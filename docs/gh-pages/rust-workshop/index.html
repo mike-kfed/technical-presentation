@@ -86,23 +86,28 @@ class="border-dark" style="width:300px" /></p>
 <li><p><a href="https://github.com/sdsc-ordes/rust-workshop"
 target="_blank">Rust Workshop Exercises</a>: These are the exercises we
 do during the workshop.</p></li>
-<li><p><a href="https://TODO" target="_blank">Slides</a>: The slides of
-this presentation.</p></li>
+<li><p><a
+href="https://sdsc-ordes.github.io/technical-presentation/gh-pages/rust-workshop"
+target="_blank">Slides</a>: The slides of this presentation.</p></li>
 </ul>
 </section>
 <section id="rust-references" class="slide level2">
 <h2>Rust References</h2>
 <ul>
-<li><p><a href="https://doc.rust-lang.org/std" target="_blank">Rust
-Standard Library</a>: The Rust standard library to search for common
-functionality.</p></li>
-<li><p><a href="https://doc.rust-lang.org/book" target="_blank">Rust
-Book</a>: The extensive Rust book explaining topics in more detail (some
-times too much prosa 🐒).</p></li>
+<li><p><a href="https://www.rust-lang.org/learn"
+target="_blank"><strong>Official Learning Reference</strong></a>: Entry
+to all your needs.</p></li>
+<li><p><a href="https://doc.rust-lang.org/std"
+target="_blank"><strong>Rust Standard Library</strong></a>: The Rust
+standard library to search for common functionality.</p></li>
+<li><p><a href="https://doc.rust-lang.org/book"
+target="_blank"><strong>Rust Book</strong></a>: The extensive Rust book
+explaining topics in more detail (some times too much prosa
+🐒).</p></li>
 <li><p><a href="https://doc.rust-lang.org/rust-by-example"
-target="_blank">Rust By Example</a>: A summary about different Rust
-topics by small examples. This is good to get a first grasp of
-it.</p></li>
+target="_blank"><strong>Rust By Example</strong></a>: A summary about
+different Rust topics by small examples. This is good to get a first
+grasp of it.</p></li>
 </ul>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
@@ -128,7 +133,7 @@ it.</p></li>
 Language Unlike Python</h4>
 <ul>
 <li><p>The Rust compiler <code>rustc</code> 🦀 will convert your code to
-machine-code ⚙️. Python is an interpreter.</p></li>
+machine-code ⚙️. <br> Python is an interpreter.</p></li>
 <li><p>It has a <strong>strong type system</strong> (<a
 href="TODO">algebraic types</a>: sum types, product types).</p></li>
 <li><p>It was invented in 2009 by Mozilla (Firefox) - Rust Foundation as
@@ -214,7 +219,7 @@ statically typed</em> </span>language…
 LLVM.</p></li>
 <li class="fragment"><p>No garbage collector (GC) getting in the way of
 execution.</p>
-<pre class="python"><code>def run():
+<pre class="python" data-line-numbers=""><code>def run():
   d = { &quot;a&quot;:1, &quot;b&quot;:2 } # Memory is allocated on the heap.
 
 run()</code></pre>
@@ -292,7 +297,7 @@ target="_blank">compiler driven development</a>.</p></li>
 <div class="columns">
 <div class="column fragment" style="width:50%;">
 <p>Python:</p>
-<pre class="python smaller-code"><code>def get_float(num: str | float):
+<pre class="python smaller-code"><code>def get_float(num: str | float) -&gt; float:
   match (num):
       case str(num):
           return float(num)</code></pre>
@@ -351,7 +356,9 @@ target="_blank"><code>Rust</code></a>.</em></li>
 <ul>
 <li class="fragment">Python has an <a
 href="https://realpython.com/python-gil/" target="_blank">interpreter
-lock (GIL)</a> which prohibits proper threading.</li>
+lock (GIL)</a> which prohibits proper threading (<a
+href="https://www.lesinskis.com/python-GIL-removal.html"
+target="_blank">it gets removed</a>).</li>
 </ul></li>
 </ul>
 </div>
@@ -363,7 +370,8 @@ lock (GIL)</a> which prohibits proper threading.</li>
 <li class="fragment"><p>Learning a new language teaches you new
 tricks:</p>
 <ul>
-<li class="fragment">You will also write better Python code!</li>
+<li class="fragment">You will also write better code (also in
+Python)!</li>
 </ul></li>
 <li class="fragment"><p>Rust is a young, but a quickly growing
 platform:</p>
@@ -387,14 +395,13 @@ platform:</p>
 commands for initiating libraries/CLI etc.</p>
 <pre class="bash"><code>cd hello-world
 cargo run</code></pre>
-<pre class="text"><code>Compiling hello-world v0.1.0 (/home/teach-rs/Projects/hello-world)
+<pre class="text"><code>Compiling hello-world v0.1.0
 Finished dev [unoptimized + debuginfo] target(s) in 0.74s
 Running `target/debug/hello-world`
 Hello, world!</code></pre>
 </section>
-<section id="first-project" class="slide level2">
-<h2>First Project</h2>
-<h3 id="computing-a-simple-sum">Computing a Simple Sum</h3>
+<section id="computing-a-simple-sum" class="slide level2">
+<h2>Computing a Simple Sum</h2>
 <pre class="rust" data-line-numbers="all|1-3|2|5-11|6-10|7,9|all"><code>fn main() {
     println!(&quot;sum(4) = 4 + 3 + 2 + 1 = {}&quot;, sum(4));
 }
@@ -405,7 +412,8 @@ fn sum(n: u64) -&gt; u64 {
     } else {
         n
     }
-}</code></pre>
+}
+// Note: avoid recursion as you always can :)</code></pre>
 <p><strong>Output</strong>:</p>
 <pre class="text"><code>sum(10) = 4 + 3 + 2 + 1 = 10</code></pre>
 <aside class="notes">
@@ -480,8 +488,10 @@ update</li>
 }</code></pre>
 <ul>
 <li>Rust is strongly and strictly typed.</li>
-<li>Variables use <em>type inference</em>, so no need to specify a
-type.</li>
+<li>Variables use <em>type inference</em>, so no need to specify a type
+(<a
+href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system"
+target="_blank">Henly-Millner Type System</a>).</li>
 <li>We can be explicit in our types (and sometimes have to be).</li>
 </ul>
 </section>
@@ -626,6 +636,8 @@ expressions are wrapping, for efficiency.</p></li>
 </section>
 <section id="comparison-operators" class="slide level2">
 <h2>Comparison Operators</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <pre class="rust"><code>fn main() {
     let x = 10;
     let y = 20;
@@ -636,19 +648,24 @@ expressions are wrapping, for efficiency.</p></li>
     x == y; // false
     x != y; // true
 }</code></pre>
-<aside class="notes">
-<p>As with numerical operators, you cannot compare different integer and
-float types with each other</p>
-</aside>
+</div><div class="column" style="width:50%;">
 <pre class="rust"><code>fn main() {
     3.0 &lt; 20;      // invalid
     30u64 &gt; 20i32; // invalid
 }</code></pre>
+</div>
+</div>
+<div>
 <ul>
-<li>Boolean operators short-circuit: i.e. if in
-<code>a &amp;&amp; b</code>, <code>a</code> is already false, then the
-code for <code>b</code> is not executed.</li>
+<li class="fragment"><strong>Boolean operators short-circuit</strong>:
+i.e. if in <code>a &amp;&amp; b</code>, <code>a</code> is already false,
+then the code for <code>b</code> is not executed.</li>
 </ul>
+</div>
+<aside class="notes">
+<p>As with numerical operators, you cannot compare different integer and
+float types with each other</p>
+</aside>
 </section>
 <section id="primitives-characters" class="slide level2">
 <h2>Primitives: Characters</h2>
@@ -828,6 +845,8 @@ iteration.</p></li>
 </section>
 <section id="functions" class="slide level2">
 <h2>Functions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <pre class="rust"><code>fn add(a: i32, b: i32) -&gt; i32 {
     a + b // or: `return a+b`
 }
@@ -839,6 +858,7 @@ fn returns_nothing() -&gt; () {
 fn also_returns_nothing() {
     println!(&quot;Nothing to report&quot;);
 }</code></pre>
+</div><div class="column" style="width:50%;">
 <div>
 <ul>
 <li class="fragment">The function signature must be annotated with
@@ -850,6 +870,8 @@ types.</li>
 line</strong> with <strong>no semicolon</strong> (or write
 <code>return expr</code>).</li>
 </ul>
+</div>
+</div>
 </div>
 <aside class="notes">
 <ul>
@@ -872,7 +894,7 @@ boundaries.</li>
 action and <strong>do not return a value</strong>.</li>
 <li>A definition of any kind (function definition etc.)</li>
 <li>The <code>let var = expr;</code> statement.</li>
-<li>Almost everything else is an <em>expression</em>.</li>
+<li>Almost everything else is an <strong>expression</strong>.</li>
 </ul>
 <p><br></p>
 <h3 id="examples">Examples</h3>
@@ -919,7 +941,7 @@ statement.</li>
 </ul>
 </div>
 <pre class="rust" data-line-numbers="all|2-5"
-data-fragment-index="1"><code>fn main() {
+data-fragment-index="0"><code>fn main() {
     let y = {
         let x = 3;
         x + 1
@@ -958,7 +980,6 @@ with a semicolon if they return <em>unit</em>
 <pre class="rust" data-fragment-index="all|3-8|10-15"
 style="font-size:14pt;"><code>fn main() {
     let y = 11;
-
     // if as an expression
     let x = if y &lt; 10 {
         42    // missing ;
@@ -1032,7 +1053,7 @@ class="green"><strong>Yes</strong></span> - <code>a == 1</code>.</p>
 <!-- prettier-ignore-start -->
 <div class="columns">
 <div class="column" style="width:50%;">
-<pre class="rust"><code>fn main() { // nothing in scope here
+<pre class="rust" data-line-numbers="1|2|4|5|6|7|9"><code>fn main() { // nothing in scope here
   let i = 10; // i is now in scope
 
   if i &gt; 5 {
@@ -1042,8 +1063,8 @@ class="green"><strong>Yes</strong></span> - <code>a == 1</code>.</p>
 
   println!(&quot;i = {}&quot;, i);
 } // i is no longer in scope</code></pre>
-</div><div class="column" style="width:50%;">
-<pre class="python fragment"><code>def main():
+</div><div class="column fragment" style="width:50%;">
+<pre class="python" data-line-numbers=""><code>def main():
   i = 10;
 
   if i &gt; 5:
@@ -1060,8 +1081,9 @@ class="green"><strong>Yes</strong></span> - <code>a == 1</code>.</p>
 </section>
 <section id="printing-formatting-values" class="slide level2">
 <h2>Printing &amp; Formatting Values</h2>
-<p>With the <code>format!</code> or <code>println!</code> macros (later)
-you can format or print variables to <code>stdout</code> of your
+<p>With the <a href="https://doc.rust-lang.org/std/fmt/index.html"
+target="_blank"><code>format!</code> or <code>println!</code> macros</a>
+(later) you can format or print variables to <code>stdout</code> of your
 application:</p>
 <pre class="rust"><code>fn main() {
   let x = 130;
@@ -1078,22 +1100,18 @@ application:</p>
 130 + 50
 0130 +         50</code></pre>
 </section>
-<section id="exercise-time" class="slide level2">
-<h2>Exercise Time</h2>
+<section id="exercise-time-1" class="slide level2">
+<h2>Exercise Time (1)</h2>
 <p>Approx. Time: 20-45 min.</p>
 <p>Do the following exercises:</p>
 <ul>
-<li><p><code>basic-syntax</code>: 01-07, 08 (optional)</p>
-<p><strong>Build/Run/Test:</strong></p>
-<pre class="bash"><code>just build basic-syntax --bin 01
-just run basic-syntax --bin 01
-just test basic-syntax --bin 01</code></pre>
-<p><strong>Continuously evaluate with
-<code>cargo-watch</code>:</strong></p>
-<pre class="bash"><code>just watch build basic-syntax --bin 01
-just watch run basic-syntax --bin 01
-just watch test basic-syntax --bin 01</code></pre></li>
+<li><code>basic-syntax</code>: all, 08 (optional)</li>
 </ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -1185,16 +1203,17 @@ alt="Memory Layout" />
     let a: u32 = 10; // `a` points on the stack containing 10.
     println!(&quot;a address: {:p}&quot;, &amp;a);
 
-    let b: u32 = a;  // Copy `b` to `a`.
+    let b: u32 = a;  // Copy `a` to `b`.
     println!(&quot;b address: {:p}&quot;, &amp;b;
 } // `a,b` out of scope, we leave the stack frame.
 
 fn main() { // Enter 1. stack frame.
   foo()
 }</code></pre>
-<p>Stack frame needs at least <span class="math inline">\(2 \cdot
-32\)</span> bits = <span class="math inline">\(2 \cdot 4\)</span> bytes
-= <span class="math inline">\(8\)</span> bytes.</p>
+<p>Stack frame for <code>foo</code> needs at least <span
+class="math inline">\(2 \cdot 32\)</span> bits = <span
+class="math inline">\(2 \cdot 4\)</span> bytes = <span
+class="math inline">\(8\)</span> bytes.</p>
 <pre class="text"><code>a address: 0x7ffdb6f09c08
 b address: 0x7ffdb6f09c0c  // 08 + 4bytes = 0c</code></pre>
 <aside class="notes">
@@ -1331,17 +1350,15 @@ around every time, it would make our program slow.</li>
 <div class="columns">
 <div class="column" style="width:50%;">
 <pre class="rust" data-line-numbers=""><code>// Create two variables on the stack.
-let a = 5;
-println!(&quot;{}&quot;, a);</code></pre>
+let a = 5;</code></pre>
 <p>Local integer <code>a</code> allocated on the <br>
 <strong>stack</strong>.</p>
 <p><img
 data-src="presentations/presentation-1/assets/images/convert/presentations/presentation-1/assets/images/convert/d804318ff88c1b1632803137cfedffe3a5882f08.svg"
 class="svgbob" /></p>
-</div><div class="column" style="width:50%;">
+</div><div class="column fragment" style="width:50%;">
 <pre class="rust" data-line-numbers=""><code>// Create an owned, heap allocated string
-let a = String::from(&quot;hello&quot;);
-println!(&quot;{}, world!&quot;, a);</code></pre>
+let a = String::from(&quot;hello&quot;);</code></pre>
 <p>Strings (<code>a</code>) store data on the <strong>heap</strong>
 because they <strong>can grow</strong>.</p>
 <p><img
@@ -1359,7 +1376,6 @@ class="svgbob" /></p>
 <pre class="rust" data-line-numbers=""><code>fn foo() {
   let a = 5;
   let b = a;
-  println!(&quot;{}&quot;, a);
 }</code></pre>
 <p>Assignment of <code>a</code> to <code>b</code>
 <strong>copies</strong> <code>a</code> to <code>b</code>.</p>
@@ -1372,10 +1388,9 @@ class="svgbob" style="margin:0;" /></p>
 <pre class="rust" data-line-numbers=""><code>fn foo() {
   let a = String::from(&quot;hello&quot;);
   let b = a;
-  println!(&quot;{}, world!&quot;, a);
 }</code></pre>
-<p>Assignment of <code>a</code> to <code>b</code> transfers
-ownership.</p>
+<p>Assign. <code>a</code> to <code>b</code> transfers ownership
+(<strong>move</strong>).</p>
 <div class="center-content p-no-margin">
 <p><img
 data-src="presentations/presentation-1/assets/images/convert/presentations/presentation-1/assets/images/convert/2be89ebbeda38dea4bd5e895d5211c9389dda51e.svg"
@@ -1461,7 +1476,7 @@ aliasing it (which is what C and C++ do)</li>
 <!-- prettier-ignore-start -->
 <div class="columns">
 <div class="column" style="width:50%;">
-<pre class="rust" data-line-numbers=""><code>fn main() {
+<pre class="rust" data-line-numbers="2|4|9-11|5"><code>fn main() {
   let a = String::from(&quot;hello&quot;);
 
   let len = calculate_length(a);
@@ -1472,7 +1487,7 @@ aliasing it (which is what C and C++ do)</li>
 fn calculate_length(s: String) -&gt; usize {
   s.len()
 }</code></pre>
-</div><div class="column" style="width:50%;">
+</div><div class="column fragment" style="width:50%;">
 <pre class="text"><code>error[E0382]: borrow of moved value: `a`
 --&gt; src/main.rs:4:43
   |
@@ -1507,6 +1522,8 @@ call.</li>
 <section id="ownership---moving-out-of-function" class="slide level2">
 <h2>Ownership - Moving Out of Function</h2>
 <p>We can return a value to move it out of the function</p>
+<div class="columns">
+<div class="column" style="width:60%;">
 <pre class="rust"><code>fn main() {
     let a = String::from(&quot;hello&quot;);
     let (len, a) = calculate_length(a);
@@ -1517,11 +1534,14 @@ call.</li>
 fn calculate_length(s: String) -&gt; (usize, String) {
     (s.len(), s)
 }</code></pre>
-<pre class="text fragment"><code>Compiling playground v0.0.1 (/playground)
-Finished dev [unoptimized + debuginfo] target(s) in 5.42s
+</div><div class="column" style="width:40%;">
+<pre class="text fragment"><code>Compiling playground v0.0.1
+Finished dev ...
 Running `target/debug/playground`
 
 Length of &#39;hello&#39; is 5.</code></pre>
+</div>
+</div>
 <aside class="notes">
 <ul>
 <li>But what if we move a value into a function and we still want to use
@@ -1583,22 +1603,18 @@ clone, because it gets destroyed almost immediately after creation</li>
 </ul>
 </aside>
 </section>
-<section id="exercise-time" class="slide level2">
-<h2>Exercise Time</h2>
-<p>Approx. Time: 20-45 min.</p>
+<section id="exercise-time-2" class="slide level2">
+<h2>Exercise Time (2)</h2>
+<p>Approx. Time: 20-30 min.</p>
 <p>Do the following exercises:</p>
 <ul>
-<li><p><code>move-semantics</code>: 01-04</p>
-<p><strong>Build/Run/Test:</strong></p>
-<pre class="bash"><code>just build move-semantics --bin 01
-just run move-semantics --bin 01
-just test move-semantics --bin 01</code></pre>
-<p><strong>Continuously evaluate with
-<code>cargo-watch</code>:</strong></p>
-<pre class="bash"><code>just watch build move-semantics --bin 01
-just watch run move-semantics --bin 01
-just watch test move-semantics --bin 01</code></pre></li>
+<li><code>move-semantics</code>: all</li>
 </ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -1697,7 +1713,7 @@ fn get_length(s: &amp;String) -&gt; usize {
 <!-- prettier-ignore-start -->
 <div class="columns">
 <div class="column" style="width:50%;">
-<pre class="rust" data-line-numbers="|3,8"><code>fn main() {
+<pre class="rust" data-line-numbers="2|3|8|5"><code>fn main() {
     let s = String::from(&quot;hello&quot;);
     change(&amp;s);
 
@@ -1707,18 +1723,16 @@ fn get_length(s: &amp;String) -&gt; usize {
 fn change(s: &amp;String) {
     s.push_str(&quot;, world&quot;);
 }</code></pre>
-</div><div class="column" style="width:50%;">
-<pre class="text fragment"><code>error[E0596]:
+</div><div class="column fragment" style="width:50%;">
+<pre class="text"><code>error[E0596]:
     cannot borrow `*s` as mutable,
     as it is behind a `&amp;` reference
  --&gt; src/main.rs:8:5
-  |
 8 | fn change(s: &amp;String) {
   |              -------
   |     help: consider changing this to
   |            be a mutable reference:
   |           `&amp;mut String`
-  |
 9 |     s.push_str(&quot;, world&quot;);
   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   |     `s` is a `&amp;` reference, so the data
@@ -1793,7 +1807,7 @@ time</strong>:</p>
 </ul>
 <p><strong>OR</strong></p>
 <ul>
-<li><strong>Many read</strong> references <code>&amp;mut T</code>
+<li><strong>Many read</strong> references <code>&amp;mut T</code> 📑 📑
 📑</li>
 </ul>
 </div><div class="column fragment" style="width:50%;">
@@ -1825,14 +1839,12 @@ parallelization!</li>
 </section>
 <section id="borrowing-and-memory-safety" class="slide level2">
 <h2>Borrowing and Memory Safety</h2>
-<p>The ownership model does guarantee the following error do
-<strong>not</strong> occur:</p>
 <ul>
-<li><p>🦺 Rust is memory safe without any runtime garbage collector.</p>
-<ul>
-<li>Memory bugs such as: null pointer dereferences, data races, dangling
-pointers, use after free.</li>
-</ul></li>
+<li><p>The ownership model does guarantee <strong>no</strong>: <br> null
+pointer dereferences, data races, dangling pointers, use after
+free.</p></li>
+<li><p>🦺 Rust is memory safe without any runtime garbage
+collector.</p></li>
 <li><p>🚀 Performance of a language that would normally let you manage
 memory manually.</p></li>
 </ul>
@@ -1854,7 +1866,7 @@ pointers, use after free.</li>
     let c = &amp;mut s;
     println!(&quot;{} - {} - {}&quot;, a, b, c);
 }</code></pre>
-</div><div class="column" style="width:50%;">
+</div><div class="column fragment" style="width:50%;">
 <pre class="text"><code>error[E0502]: cannot borrow `s` as mutable
               because it is also
               borrowed as immutable
@@ -1925,12 +1937,25 @@ stack value (e.g. <code>s</code>) is not possible.</strong></span></p>
 }</code></pre>
 <ul>
 <li>Rust annotates each reference with a <strong>lifetime</strong>.</li>
-<li>How to use lifetimes? -&gt; later!</li>
+<li>How to use lifetimes?  later!</li>
 </ul>
 <aside class="notes">
 <p>We will later see how these work if we have to use them to help the
 compiler in certain cases.</p>
 </aside>
+</section>
+<section id="exercise-time-3" class="slide level2">
+<h2>Exercise Time (3)</h2>
+<p>Approx. Time: 20-30 min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>borrowing</code>: all</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -2146,6 +2171,19 @@ fn main() {
 <li>See the explicitness of the cast!</li>
 </ul>
 </aside>
+</section>
+<section id="exercise-time-4" class="slide level2">
+<h2>Exercise Time (4)</h2>
+<p>Approx. Time: 20-30 min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>composite-types</code>: all</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -2687,6 +2725,87 @@ value <code>v</code> is extracted and it contiues.</p></li>
 </ul>
 </div></li>
 </ul>
+</section>
+<section id="exercise-time-5" class="slide level2">
+<h2>Exercise Time (5)</h2>
+<p>Approx. Time: 20-1.5h min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>options</code> (short)</li>
+<li><code>error-handling</code> (longer)</li>
+<li><code>error-propagation</code> (longer)</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
+<!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
+</section></section>
+<section>
+<section id="the-type-vect" class="title-slide slide level1">
+<h1>The Type <code>Vec&lt;T&gt;</code></h1>
+
+</section>
+<section id="vect-storage-for-same-type-t" class="slide level2">
+<h2><code>Vec&lt;T&gt;</code>: Storage for Same Type <code>T</code></h2>
+<p>The <code>Vec&lt;T&gt;</code> is an array of types <code>T</code>
+that <strong>can grow</strong>.</p>
+<ul>
+<li><p>Compare this to the array, which has a fixed size:</p>
+<pre class="rust" data-line-numbers=""><code>fn main() {
+  let arr = [1, 2];
+  println!(&quot;{:?}&quot;, arr);
+
+  let mut nums = Vec::new();
+  nums.push(1);
+  nums.push(2);
+
+  println!(&quot;{:?}&quot;, nums);
+}</code></pre></li>
+</ul>
+</section>
+<section id="vec-constructor-macro" class="slide level2">
+<h2><code>Vec</code>: Constructor Macro</h2>
+<p><code>Vec</code> is common type. Use the macro <code>vec!</code> to
+initialize it with values:</p>
+<pre class="rust" data-line-numbers="2"><code>fn main() {
+  let mut nums = vec![1, 2];
+  nums.push(3);
+
+  println!(&quot;{:?}&quot;, nums);
+}</code></pre>
+</section>
+<section id="vec-memory-layout" class="slide level2">
+<h2><code>Vec</code>: Memory Layout</h2>
+<p>How can a vector grow? Things on the stack need to be of a fixed
+size.</p>
+<div class="columns">
+<div class="column fragment" style="width:50%;">
+<figure>
+<img
+data-src="presentations/presentation-1/assets/images/convert/presentations/presentation-1/assets/images/convert/4e0ee1c01ad7a150e409216c4dd382c9c22c4daf.svg"
+class="svgbob" alt="Vec&lt;T&gt; Memory Layout" />
+<figcaption aria-hidden="true"><code>Vec&lt;T&gt;</code> Memory
+Layout</figcaption>
+</figure>
+</div><div class="column fragment"
+style="width:50%; align-content:center;">
+<div>
+<ul>
+<li class="fragment"><p>A <code>Vec</code> allocates its contents on the
+heap (a <code>[i64; 4]</code> is on the stack).</p></li>
+<li class="fragment"><p><strong>Quiz:</strong> What happens if the
+capacity is full and we add another element.</p>
+<ul>
+<li class="fragment">The <code>Vec</code> <strong>reallocates</strong>
+its memory with more capacity to another memory location  Lots of
+copies 🐌 ⏱️.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -3091,6 +3210,19 @@ length.</p></li>
 string.</p></li>
 </ul>
 </div>
+</section>
+<section id="exercise-time-6" class="slide level2">
+<h2>Exercise Time (6)</h2>
+<p>Approx. Time: 30-50 min</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>slices</code>:</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -3153,6 +3285,19 @@ able to be sized dynamically, but even so, a vector can be large,
 whereas an array will generally always have a limited size</p></li>
 </ul>
 </aside>
+</section>
+<section id="exercise-time-7" class="slide level2">
+<h2>Exercise Time (7)</h2>
+<p>Approx. Time: 40-50 min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li>exercise: <code>boxed-data</code>: all</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 <!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
 </section></section>
 <section>
@@ -3485,6 +3630,19 @@ dispatch).</li>
 <li class="fragment">Slow to compile and larger binary.</li>
 </ul>
 </div>
+</section>
+<section id="exercise-time-8" class="slide level2">
+<h2>Exercise Time (8)</h2>
+<p>Approx. Time: 40-50 min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>generics</code>: all</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 </section></section>
 <section>
 <section id="common-traits-from-std" class="title-slide slide level1">
@@ -3735,6 +3893,52 @@ target="_blank"><code>Debug</code></a> to format types.</li>
 target="_blank">Iterator</a> to provide an iterator for your type.</li>
 </ul>
 </section>
+<section id="std-traits-and-the-orphan-rule" class="slide level2">
+<h2>Std-Traits and the Orphan Rule</h2>
+<p>When you <strong>provide a type</strong>, always implement the basic
+traits** from the standard if they are appropriate, e.g.</p>
+<div>
+<ul>
+<li class="fragment"><code>Default</code> : Initialize the type with
+default values.</li>
+<li class="fragment"><code>Debug</code> : Format trait for the debug
+format specifier <code>{:?}</code></li>
+<li class="fragment"><code>Display</code> : Format trait for the empty
+format specifier <code>{}</code>.</li>
+<li class="fragment"><code>Clone</code>: Cloning the type.</li>
+<li class="fragment"><code>Copy</code>: <em>Marker</em> trait: The type
+can be bitwise copied.</li>
+</ul>
+</div>
+<p>Other traits for later:</p>
+<ul>
+<li><code>Send</code> : <em>Auto</em> trait: A value <code>T</code> can
+safely be send across thread boundary.</li>
+<li><code>Sync</code> : <em>Auto</em> trait: A value <code>T</code> can
+safely be shared between threads.</li>
+<li><code>Sized</code> : <em>Marker</em> trait to denote that type
+<code>T</code> is known at compile time</li>
+</ul>
+<aside class="notes">
+<p>Marker traits do not need an implementation. Auto traits are auto
+implemented if the types fulfills the conditions.</p>
+</aside>
+</section>
+<section id="exercise-time-9" class="slide level2">
+<h2>Exercise Time (9)</h2>
+<p>Approx. Time: 40-50 min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>extension-traits</code>: a very good one!</li>
+<li><code>local-storage-vec</code>: ⚠️ Hardcore exercise (spare for
+later)</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
+</section>
 <section id="lifetime-annotations" class="slide level2">
 <h2>Lifetime Annotations</h2>
 </section>
@@ -3915,6 +4119,19 @@ fn frob(s: &amp;str, t: &amp;str) -&gt; &amp;str;                      // ILLEGA
 
 fn get_mut(&amp;mut self) -&gt; &amp;mut T;                        // elided
 fn get_mut&lt;&#39;a&gt;(&amp;&#39;a mut self) -&gt; &amp;&#39;a mut T;              // expanded</code></pre>
+</section>
+<section id="exercise-time" class="slide level2">
+<h2>Exercise Time</h2>
+<p>Approx. Time: 15-30 min.</p>
+<p>Do the following exercises:</p>
+<ul>
+<li><code>lifetimes</code>: all</li>
+</ul>
+<p><strong>Build/Run/Test:</strong></p>
+<pre class="bash"><code>just build &lt;exercise&gt; --bin 01
+just run &lt;exercise&gt; --bin 01
+just test &lt;exercise&gt; --bin 01
+just watch [build|run|test|watch] &lt;exercise&gt; --bin 01</code></pre>
 </section></section>
 <section>
 <section id="closures" class="title-slide slide level1">
@@ -4064,6 +4281,322 @@ requirements.</p></li>
 let evens: Vec&lt;_&gt; = numbers.into_iter()
                            .filter(|x| x % 2 == 0)
                            .collect();</code></pre>
+<!-- markdownlint-disable-file MD034 MD033 MD001 MD024 MD026-->
+</section></section>
+<section>
+<section id="trait-objects-dynamic-dispatch"
+class="title-slide slide level1">
+<h1>Trait Objects &amp; Dynamic Dispatch</h1>
+
+</section>
+<section id="trait-object" class="slide level2">
+<h2>Trait… Object?</h2>
+<ul>
+<li>We learned about <a href="#/traits-and-generics">traits</a>.</li>
+<li>We learned about generics and <code>monomorphization</code>.</li>
+</ul>
+<p>There’s more to this story though…</p>
+<p><strong>Question</strong>: What was monomorphization again?</p>
+</section>
+<section id="monomorphization-recap" class="slide level2">
+<h2>Monomorphization (recap)</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="rust"><code>impl MyAdd for i32 {/* ... */}
+impl MyAdd for f32 {/* ... */}
+
+fn add_values&lt;T: MyAdd&gt;(l: &amp;T, r: &amp;T) -&gt; T
+{
+  l.my_add(r)
+}
+
+fn main() {
+  let sum_one = add_values(&amp;6, &amp;8);
+  let sum_two = add_values(&amp;6.5, &amp;7.5);
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<p>Code is <em>monomorphized</em>:</p>
+<div>
+<ul>
+<li class="fragment">Two versions of <code>add_values</code> end up in
+binary.</li>
+<li class="fragment">Optimized separately and very fast to run (static
+dispatch).</li>
+<li class="fragment">Slow to compile and larger binary.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="dynamic-dispatch" class="slide level2">
+<h2>Dynamic Dispatch</h2>
+<p><em>What if don’t know the concrete type implementing the trait at
+compile time?</em></p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<pre class="rust" data-line-numbers="all|1-8|10-12|14-23|17-20"
+style="font-size:14pt"><code>use std::io::Write;
+use std::path::PathBuf;
+
+struct FileLogger { log_path: PathBuf }
+impl Write for FileLogger { /* ... */}
+
+struct StdOutLogger;
+impl Write for StdOutLogger { /* ... */}
+
+fn log&lt;L: Write&gt;(logger: &amp;mut L, msg: &amp;str) {
+  write!(logger, &quot;{}&quot;, msg);
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre class="rust" data-line-numbers="all|2|4-7|9"
+style="font-size:14pt"><code>fn main() {
+  let file: Option&lt;PathBuf&gt; = // args parsing...
+
+  let mut logger = match file {
+      Some(f) =&gt; FileLogger { log_file: f },
+      None =&gt; StdOutLogger,
+  };
+
+  log(&amp;mut logger, &quot;Hello, world!🦀&quot;);
+}</code></pre>
+</div>
+</div>
+</section>
+<section id="error" class="slide level2">
+<h2>Error!</h2>
+<pre class="txt"><code>error[E0308]: `match` arms have incompatible types
+  --&gt; src/main.rs:19:17
+   |
+17 |       let mut logger = match log_file {
+   |  ______________________-
+18 | |         Some(log_path) =&gt; FileLogger { log_path },
+   | |                           -----------------------
+   | |                           this is found to be of
+   | |                           type `FileLogger`
+19 | |         None =&gt; StdOutLogger,
+   | |                 ^^^^^^^^^^^^ expected struct `FileLogger`,
+   | |                              found struct `StdOutLogger`
+20 | |     };
+   | |_____- `match` arms have incompatible types</code></pre>
+<p><em>What’s the type of <code>logger</code>?</em></p>
+</section>
+<section id="heterogeneous-collections" class="slide level2">
+<h2>Heterogeneous Collections</h2>
+<p><em>What if we want to create collections of different types
+implementing the same trait?</em></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="rust" data-line-numbers="all|1-13|15-21"><code>trait Render {
+    fn paint(&amp;self);
+}
+
+struct Circle;
+impl Render for Circle {
+    fn paint(&amp;self) { /* ... */ }
+}
+
+struct Rectangle;
+impl Render for Rectangle {
+    fn paint(&amp;self) { /* ... */ }
+}</code></pre>
+</div><div class="column" style="width:50%;">
+<pre class="rust"><code>fn main() {
+    let mut shapes = Vec::new();
+    let circle = Circle;
+    shapes.push(circle);
+    let rect = Rectangle;
+    shapes.push(rect);
+    shapes.iter().for_each(|shape| shape.paint());
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default">layout: default</h3>
+</section>
+<section id="error-again" class="slide level2">
+<h2>Error again!</h2>
+<pre class="txt"><code>   Compiling playground v0.0.1 (/playground)
+error[E0308]: mismatched types
+  --&gt; src/main.rs:20:17
+   |
+20 |     shapes.push(rect);
+   |            ---- ^^^^ expected struct `Circle`, found struct `Rectangle`
+   |            |
+   |            arguments to this method are incorrect
+   |
+note: associated function defined here
+  --&gt; /rustc/2c8cc343237b8f7d5a3c3703e3a87f2eb2c54a74/library/alloc/src/vec/mod.rs:1836:12
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `playground` due to previous error</code></pre>
+<p><em>What is the type of <code>shapes</code>?</em></p>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default-1">layout: default</h3>
+</section>
+<section id="trait-objects-to-the-rescue" class="slide level2">
+<h2>Trait objects to the rescue</h2>
+<ul>
+<li>Opaque type that implements a set of traits</li>
+<li>Type description: <code>dyn T: !Sized</code> where <code>T</code> is
+a <code>trait</code></li>
+<li>Like slices, Trait Objects always live behind pointers
+(<code>&amp;dyn T</code>, <code>&amp;mut dyn T</code>,
+<code>Box&lt;dyn T&gt;</code>, <code>...</code>)</li>
+<li>Concrete underlying types are erased from trait object</li>
+</ul>
+<p><code>rust{all|5-7} fn main() {     let log_file: Option&lt;PathBuf&gt; =         todo!("read args");     // Create a trait object that implements `Write`     let logger: &amp;mut dyn Write = match log_file {         Some(log_path) =&gt; &amp;mut FileLogger { log_path },         None =&gt; &amp;mut StdOutLogger,     }; }</code></p>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-two-cols">layout: two-cols</h3>
+</section>
+<section id="layout-of-trait-objects" class="slide level2">
+<h2>Layout of trait objects</h2>
+<pre class="rust"><code>/// Same code as last slide
+fn main() {
+    let log_file: Option&lt;PathBuf&gt; =
+        todo!(&quot;read args&quot;);
+    // Create a trait object that implements `Write`
+    let logger: &amp;mut dyn Write = match log_file {
+        Some(log_path) =&gt; &amp;mut FileLogger { log_path },
+        None =&gt; &amp;mut StdOutLogger,
+    };
+
+    log(&quot;Hello, world!🦀&quot;, &amp;mut logger);
+}</code></pre>
+<p><v-click></p>
+<ul>
+<li><em>💸 Cost: pointer indirection via vtable → less
+performant</em></li>
+<li><em>💰 Benefit: no monomorphization → smaller binary &amp; shorter
+compile time!</em> </v-click></li>
+</ul>
+<p>::right::</p>
+<!-- TODO switch out this JPEG for an SVG that works both in dark and light theme -->
+<p><img src="/images/D-trait-object-layout.jpg" style="margin-left:5%; margin-top: 50px; max-width: 100%; max-height: 90%;"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default-2">layout: default</h3>
+</section>
+<section id="fixing-dynamic-logger" class="slide level2">
+<h2>Fixing dynamic logger</h2>
+<ul>
+<li>Trait objects <code>&amp;dyn T</code>,
+<code>Box&lt;dyn T&gt;</code>, … implement <code>T</code>!</li>
+</ul>
+<p>``<code>rust{all|9-12|1-2} // We no longer require L be</code>Sized`,
+so to accept trait objects fn log&lt;L: Write + ?Sized&gt;(entry:
+&amp;str, logger: &amp;mut L) { write!(logger, “{}”, entry); }</p>
+<p>fn main() { let log_file: Option<PathBuf> = todo!(“read args”); //
+Create a trait object that implements <code>Write</code> let logger:
+&amp;mut dyn Write = match log_file { Some(log_path) =&gt; &amp;mut
+FileLogger { log_path }, None =&gt; &amp;mut StdOutLogger, };</p>
+<pre><code>log(&quot;Hello, world!🦀&quot;, logger);</code></pre>
+<p>}</p>
+<pre><code>
+And all is well!
+
+---
+
+### layout: default
+
+## Forcing dynamic dispatch
+
+Sometimes you want to enforce API users (or colleagues) to use dynamic dispatch
+
+```rust{all|1}
+fn log(entry: &amp;str, logger: &amp;mut dyn Write) {
+    write!(logger, &quot;{}&quot;, entry);
+}
+
+fn main() {
+    let log_file: Option&lt;PathBuf&gt; =
+        todo!(&quot;read args&quot;);
+    // Create a trait object that implements `Write`
+    let logger: &amp;mut dyn Write = match log_file {
+        Some(log_path) =&gt; &amp;mut FileLogger { log_path },
+        None =&gt; &amp;mut StdOutLogger,
+    };
+
+
+    log(&quot;Hello, world!🦀&quot;, &amp;mut logger);
+}</code></pre>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default-3">layout: default</h3>
+</section>
+<section id="fixing-the-renderer" class="slide level2">
+<h2>Fixing the renderer</h2>
+<pre class="rust"><code>fn main() {
+    let mut shapes = Vec::new();
+    let circle = Circle;
+    shapes.push(circle);
+    let rect = Rectangle;
+    shapes.push(rect);
+    shapes.iter().for_each(|shape| shape.paint());
+}</code></pre>
+<p><v-click> Becomes</p>
+<p><code>rust{all|2,3,5} fn main() {     let mut shapes: Vec&lt;Box&lt;dyn Render&gt;&gt; = Vec::new();     let circle = Box::new(Circle);     shapes.push(circle);     let rect = Box::new(Rectangle);     shapes.push(rect);     shapes.iter().for_each(|shape| shape.paint()); }</code></p>
+<p>All set! </v-click></p>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default-4">layout: default</h3>
+</section>
+<section id="trait-object-limitations" class="slide level2">
+<h2>Trait object limitations</h2>
+<ul>
+<li>Pointer indirection cost</li>
+<li>Harder to debug</li>
+<li>Type erasure</li>
+<li>Not all traits work:</li>
+</ul>
+<p><em>Traits need to be ‘Object Safe’</em></p>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default-5">layout: default</h3>
+</section>
+<section id="object-safety" class="slide level2">
+<h2>Object safety</h2>
+<p>In order for a trait to be object safe, these conditions need to be
+met:</p>
+<ul>
+<li>If <code>trait T: Y</code>, then<code>Y</code> must be object
+safe</li>
+<li>trait <code>T</code> must not be <code>Sized</code>:
+<em>Why?</em></li>
+<li>No associated constants allowed*</li>
+<li>No associated types with generic allowed*</li>
+<li>All associated functions must either be dispatchable from a trait
+object, or explicitly non-dispatchable
+<ul>
+<li>e.g. function must have a receiver with a reference to
+<code>Self</code></li>
+</ul></li>
+</ul>
+<p>Details in <a
+href="https://doc.rust-lang.org/reference/items/traits.html#object-safety"
+target="_blank">The Rust Reference</a>. Read them!</p>
+<p>*These seem to be compiler limitations</p>
+</section>
+<section class="slide level2">
+
+<h3 id="layout-default-6">layout: default</h3>
+</section>
+<section id="so-far" class="slide level2">
+<h2>So far…</h2>
+<ul>
+<li>Trait objects allow for dynamic dispatch and heterogeneous</li>
+<li>Trait objects introduce pointer indirection</li>
+<li>Traits need to be object safe to make trait objects out of them</li>
+</ul>
 </section></section>
     </div>
   </div>
@@ -4381,6 +4914,17 @@ let evens: Vec&lt;_&gt; = numbers.into_iter()
 
         highlight: {
           highlightOnLoad: false,
+          beforeHighlight: (hljs) => {
+            const keywords = new Map([
+              [ "bash", [ "cargo","rustc" ] ]
+            ]);
+            addHighlightJSKeywords(hljs, keywords)
+
+            // Run the plugin's highlighting code that was skipped on load
+            Array.from(Reveal.getRevealElement().querySelectorAll('pre code')).forEach((block) => {
+                RevealHighlight().highlightBlock(block);
+            });
+          }
         },
 
         // reveal.js plugins
@@ -4392,17 +4936,6 @@ let evens: Vec&lt;_&gt; = numbers.into_iter()
           RevealMath.MathJax3,
           RevealMenu
         ]
-      }).then(() => {
-
-          const keywords = new Map([
-            [ "bash", [ "cargo","rustc" ] ]
-          ]);
-          addHighlightJSKeywords(Reveal.getPlugin("highlight").hljs, keywords)
-
-          // Run the plugin's highlighting code that was skipped on load
-          Array.from(Reveal.getRevealElement().querySelectorAll('pre code')).forEach((block) => {
-              RevealHighlight().highlightBlock(block);
-          });
       });
     </script>
     </body>
