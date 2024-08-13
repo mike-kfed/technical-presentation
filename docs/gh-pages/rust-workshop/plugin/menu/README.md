@@ -1,6 +1,9 @@
 # reveal.js-menu
 
-A slideout menu plugin for [Reveal.js](https://github.com/hakimel/reveal.js) to quickly jump to any slide by title. Also optionally change the theme and set the default transition. [Check out the live demo](https://denehyg.github.io/reveal.js-menu)
+A slideout menu plugin for [Reveal.js](https://github.com/hakimel/reveal.js) to
+quickly jump to any slide by title. Also optionally change the theme and set the
+default transition.
+[Check out the live demo](https://denehyg.github.io/reveal.js-menu)
 
 ## Installation
 
@@ -40,7 +43,8 @@ Add the plugin to your presentation, as below.
 
 ### Manual
 
-Copy this repository into the plugins folder of your reveal.js presentation, ie `plugins/menu`.
+Copy this repository into the plugins folder of your reveal.js presentation, ie
+`plugins/menu`.
 
 Add the plugin to the dependencies in your presentation, as below.
 
@@ -55,7 +59,9 @@ Add the plugin to the dependencies in your presentation, as below.
 
 ## Configuration
 
-You can configure the menu for your presentation by providing a `menu` option in the reveal.js initialization options. Note that all config values are optional and will default as specified below.
+You can configure the menu for your presentation by providing a `menu` option in
+the reveal.js initialization options. Note that all config values are optional
+and will default as specified below.
 
 ```javascript
 Reveal.initialize({
@@ -64,13 +70,13 @@ Reveal.initialize({
   menu: {
     // Specifies which side of the presentation the menu will
     // be shown. Use 'left' or 'right'.
-    side: 'left',
+    side: "left",
 
     // Specifies the width of the menu.
     // Can be one of the following:
     // 'normal', 'wide', 'third', 'half', 'full', or
     // any valid css length value
-    width: 'normal',
+    width: "normal",
 
     // Add slide numbers to the titles in the slide list.
     // Use 'true' or format string (same as reveal.js slide numbers)
@@ -83,7 +89,7 @@ Reveal.initialize({
     // element will be used.
     // Note: that a section data-menu-title attribute or an element
     // with a menu-title class will take precedence over this option
-    titleSelector: 'h1, h2, h3, h4, h5, h6',
+    titleSelector: "h1, h2, h3, h4, h5, h6",
 
     // If slides do not have a matching title, attempt to use the
     // start of the text content as the title instead
@@ -135,7 +141,7 @@ Reveal.initialize({
     // when 'themes' is set to 'true'. If you provide your own
     // list of themes or 'themes' is set to 'false' the
     // 'themesPath' option is ignored.
-    themesPath: 'dist/theme/',
+    themesPath: "dist/theme/",
 
     // Specifies if the transitions menu panel will be shown.
     // Set to 'true' to show the transitions menu panel with
@@ -185,20 +191,23 @@ Reveal.initialize({
     // icons. If your presentation needs to load a different
     // font-awesome library the 'loadIcons' option can be set to false
     // and the menu will not attempt to load the font-awesome library.
-    loadIcons: true
-  }
-});
+    loadIcons: true,
+  },
+})
 ```
 
 ### Themes Stylesheet
 
-If you are using the themes panel you need to ensure the theme stylesheet in the presentation uses the `id="theme"` attribute. For example...
+If you are using the themes panel you need to ensure the theme stylesheet in the
+presentation uses the `id="theme"` attribute. For example...
 
 ```html
 <link rel="stylesheet" href="css/theme/black.css" id="theme" />
 ```
 
-If your themes configuration includes code highlight themes you need to ensure the highlights theme stylesheet in the presentation uses the `id="highlight-theme"` attribute. For example...
+If your themes configuration includes code highlight themes you need to ensure
+the highlights theme stylesheet in the presentation uses the
+`id="highlight-theme"` attribute. For example...
 
 ```html
 <link
@@ -210,11 +219,13 @@ If your themes configuration includes code highlight themes you need to ensure t
 
 ## Slide Titles
 
-The slide titles used in the menu can be supplied explicitly or are taken directly from the presentation, using the following rules...
+The slide titles used in the menu can be supplied explicitly or are taken
+directly from the presentation, using the following rules...
 
 ###### 1. The section's `data-menu-title` attribute.
 
-If the slide's section element contains a `data-menu-title` attribute this will be used for the slide title in the menu. For example...
+If the slide's section element contains a `data-menu-title` attribute this will
+be used for the slide title in the menu. For example...
 
 ```html
 <section data-menu-title="Custom Menu Title">
@@ -225,7 +236,10 @@ If the slide's section element contains a `data-menu-title` attribute this will 
 
 ###### 2. Any element with the class `menu-title`.
 
-If the slide's section contains an element with the class `menu-title` then the element's text will be used for the title. The first such element found will be used if there are more than one. Note the element need not be displayed to be used. For example...
+If the slide's section contains an element with the class `menu-title` then the
+element's text will be used for the title. The first such element found will be
+used if there are more than one. Note the element need not be displayed to be
+used. For example...
 
 ```html
 <section>
@@ -237,7 +251,9 @@ If the slide's section contains an element with the class `menu-title` then the 
 
 ###### 3. The first heading found or a custom element selector
 
-The `titleSelector` option can be used to customise the elements that will be used to generate the slide titles in the menu. The default option selects the first heading element found in the slide. For example...
+The `titleSelector` option can be used to customise the elements that will be
+used to generate the slide titles in the menu. The default option selects the
+first heading element found in the slide. For example...
 
 ```html
 <section>
@@ -247,7 +263,10 @@ The `titleSelector` option can be used to customise the elements that will be us
 </section>
 ```
 
-Any valid CSS selector should work but note the selector will only be applied to elements contained within the slide section. You could use the `'h1'` selector to only use level 1 headings or `'p'` to use the first paragraph element. For example, `titleSelector: 'p.lead'` would be used like this...
+Any valid CSS selector should work but note the selector will only be applied to
+elements contained within the slide section. You could use the `'h1'` selector
+to only use level 1 headings or `'p'` to use the first paragraph element. For
+example, `titleSelector: 'p.lead'` would be used like this...
 
 ```html
 <section>
@@ -257,11 +276,15 @@ Any valid CSS selector should work but note the selector will only be applied to
 </section>
 ```
 
-Using `titleSelector: ''` will ignore all elements and no title will be provided, unless the slide section contains a `data-menu-title` attribute or an element with the `menu-title` class.
+Using `titleSelector: ''` will ignore all elements and no title will be
+provided, unless the slide section contains a `data-menu-title` attribute or an
+element with the `menu-title` class.
 
 ###### 4. No title is provided
 
-If no title can be found using the above methods, a default title incorporating the slide number will be used. For example, the following would result in a slide title in the format of 'Slide 12'...
+If no title can be found using the above methods, a default title incorporating
+the slide number will be used. For example, the following would result in a
+slide title in the format of 'Slide 12'...
 
 ```html
 <section>
@@ -269,7 +292,8 @@ If no title can be found using the above methods, a default title incorporating 
 </section>
 ```
 
-If the `hideMissingTitles` option is set to `true`, however, the slide will not be listed in the menu.
+If the `hideMissingTitles` option is set to `true`, however, the slide will not
+be listed in the menu.
 
 ## Custom Menu Panels
 
@@ -284,28 +308,31 @@ Reveal.initialize({
 
     custom: [
       {
-        title: 'Links',
+        title: "Links",
         icon: '<i class="fa fa-external-link">',
-        src: 'links.html'
+        src: "links.html",
       },
       {
-        title: 'About',
+        title: "About",
         icon: '<i class="fa fa-info">',
-        content: '<p>This slidedeck is created with reveal.js</p>'
-      }
-    ]
-  }
-});
+        content: "<p>This slidedeck is created with reveal.js</p>",
+      },
+    ],
+  },
+})
 ```
 
-`title` and `icon` are used for the toolbar buttons at the top of the menu. There are two approaches you can use to provide content for the panels...
+`title` and `icon` are used for the toolbar buttons at the top of the menu.
+There are two approaches you can use to provide content for the panels...
 
 - You can provide a URL in `src` to load html from another file.
-- Alternatively, you can provide html in `content` and this will be added to the custom panel.
+- Alternatively, you can provide html in `content` and this will be added to the
+  custom panel.
 
 ###### Custom slide menu items
 
-You can provide menu items in your custom panels using the following format. This allows you to define your own navigation links for your presentation.
+You can provide menu items in your custom panels using the following format.
+This allows you to define your own navigation links for your presentation.
 
 ```html
 <h1>Links</h1>
@@ -315,7 +342,8 @@ You can provide menu items in your custom panels using the following format. Thi
 </ul>
 ```
 
-You are not limited to linking to presentation slides. You can provide any link you wish.
+You are not limited to linking to presentation slides. You can provide any link
+you wish.
 
 ```html
 <h1>External Links</h1>
@@ -329,16 +357,20 @@ You are not limited to linking to presentation slides. You can provide any link 
 </ul>
 ```
 
-Using menu items enables keyboard navigation of your links as with the other panels. However, you don't have to use menu items for your links. You can simply provide standard links and unordered lists in your html. Notice you can provide your custom menu items mixed with other html if you wish.
+Using menu items enables keyboard navigation of your links as with the other
+panels. However, you don't have to use menu items for your links. You can simply
+provide standard links and unordered lists in your html. Notice you can provide
+your custom menu items mixed with other html if you wish.
 
 ## Ready Event
 
-A 'menu-ready' event is fired when reveal.js-menu has loaded all non-async dependencies and is ready to start navigating.
+A 'menu-ready' event is fired when reveal.js-menu has loaded all non-async
+dependencies and is ready to start navigating.
 
 ```javascript
-Reveal.addEventListener('menu-ready', function (event) {
+Reveal.addEventListener("menu-ready", function (event) {
   // your code
-});
+})
 ```
 
 ## API
@@ -357,9 +389,13 @@ The `RevealMenu` object exposes a JavaScript API for controlling the menu:
 
 ## Compatibility
 
-reveal.js-menu v2.0 is built for reveal.js v4. It will not work with reveal.js v3. If you require a menu for reveal.js v3 you will need to install reveal.js-menu v1.2.0.
+reveal.js-menu v2.0 is built for reveal.js v4. It will not work with reveal.js
+v3. If you require a menu for reveal.js v3 you will need to install
+reveal.js-menu v1.2.0.
 
-v2.0 also introduces API changes that are not backwards compatible. `init()` has been renamed to `initMenu()` to deconflict with the reveal.js v4 plugin API. `isInit()` has also been changed to `isMenuInitialised()`.
+v2.0 also introduces API changes that are not backwards compatible. `init()` has
+been renamed to `initMenu()` to deconflict with the reveal.js v4 plugin API.
+`isInit()` has also been changed to `isMenuInitialised()`.
 
 ## License
 
