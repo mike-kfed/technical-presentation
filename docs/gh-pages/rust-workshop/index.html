@@ -117,8 +117,8 @@ powers, thats what it spit out =)</p>
 <ul>
 <li><kbd>S</kbd>: See the speaker notes.</li>
 <li><kbd>Esc</kbd>: See all slides and jump around.</li>
-<li><kbd>Space</kbd> or <kbd>l</kbd> or <kbd>j</kbd>: Go forward.</li>
-<li><kbd>h</kbd> or <kbd>k</kbd>: Go backward.</li>
+<li><kbd>Space</kbd>: Go forward.</li>
+<li><kbd>Shift</kbd> + <kbd>Space</kbd>: Go backward.</li>
 </ul>
 </section>
 
@@ -4523,8 +4523,8 @@ object.</li>
     };
 }</code></pre>
 </section>
-<section id="layout-of-trait-objects" class="slide level2">
-<h2>Layout of Trait Objects</h2>
+<section class="slide level2">
+
 <div class="columns">
 <div class="column" style="width:50%;">
 <pre class="rust" style="font-size:14pt;"><code>/// Same code as last slide
@@ -4574,8 +4574,6 @@ And all is well!
 
 ---
 
-### layout: default
-
 ## Forcing dynamic dispatch
 
 Sometimes you want to enforce API users (or colleagues) to use dynamic dispatch
@@ -4598,10 +4596,6 @@ fn main() {
     log(&quot;Hello, world!🦀&quot;, &amp;mut logger);
 }</code></pre>
 </section>
-<section class="slide level2">
-
-<h3 id="layout-default">layout: default</h3>
-</section>
 <section id="fixing-the-renderer" class="slide level2">
 <h2>Fixing the renderer</h2>
 <pre class="rust"><code>fn main() {
@@ -4616,10 +4610,6 @@ fn main() {
 <p><code>rust{all|2,3,5} fn main() {     let mut shapes: Vec&lt;Box&lt;dyn Render&gt;&gt; = Vec::new();     let circle = Box::new(Circle);     shapes.push(circle);     let rect = Box::new(Rectangle);     shapes.push(rect);     shapes.iter().for_each(|shape| shape.paint()); }</code></p>
 <p>All set! </v-click></p>
 </section>
-<section class="slide level2">
-
-<h3 id="layout-default-1">layout: default</h3>
-</section>
 <section id="trait-object-limitations" class="slide level2">
 <h2>Trait object limitations</h2>
 <ul>
@@ -4629,10 +4619,6 @@ fn main() {
 <li>Not all traits work:</li>
 </ul>
 <p><em>Traits need to be ‘Object Safe’</em></p>
-</section>
-<section class="slide level2">
-
-<h3 id="layout-default-2">layout: default</h3>
 </section>
 <section id="object-safety" class="slide level2">
 <h2>Object safety</h2>
@@ -4656,10 +4642,6 @@ object, or explicitly non-dispatchable
 href="https://doc.rust-lang.org/reference/items/traits.html#object-safety"
 target="_blank">The Rust Reference</a>. Read them!</p>
 <p>*These seem to be compiler limitations</p>
-</section>
-<section class="slide level2">
-
-<h3 id="layout-default-3">layout: default</h3>
 </section>
 <section id="so-far" class="slide level2">
 <h2>So far…</h2>
